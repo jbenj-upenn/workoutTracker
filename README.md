@@ -17,4 +17,7 @@ This app is still in progress, as it is not functional.
 
 ## Screenshots
 
+![screenshot1](https://user-images.githubusercontent.com/59940368/85923393-9387ba00-b858-11ea-8002-d32d31e64e1c.png)
+![screenshot2](https://user-images.githubusercontent.com/59940368/85923396-971b4100-b858-11ea-9bc0-e7fcaae9d430.png)
+![screenshot3](https://user-images.githubusercontent.com/59940368/85923401-9a163180-b858-11ea-9d36-49737e56a92d.png)
 
