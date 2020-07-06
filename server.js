@@ -1,26 +1,24 @@
-const express = require('express')
-const mongoose = require("mongoose")
+const express = require("express");
+const mongoose = require("mongoose");
+const routes = require("./routes/api")
+const routesHTML = require("./routes/html");
 
-const PORT = process.env.PORT || 3000
+// =======DECLARE PORT
+const PORT = process.env.PORT || 3003
 
+// =======INSTANCE OF EXPRESS
 const app = express()
 
+// =======MIDDLEWARE
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-
-// routes
 app.use(require("./routes/api"));
-app.use(require("./routes/html"));
+app.use(routesHTML);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", { useNewUrlParser: true });
-
-app.get('/', function(req, res){
-    res.send("I 'm working")
-    // res.sendFile(__dirname,'')
-});
+// ========CONNECT TO MONGOOSE
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/practiceDb", { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.listen(PORT, function(){
     console.log(`listening on http://localhost:${PORT}`)
 })
-

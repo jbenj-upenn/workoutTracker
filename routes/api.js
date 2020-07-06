@@ -2,6 +2,25 @@ const router = require("express").Router();
 const db = require("../models/index.js");
 const mongoose = require("mongoose");
 
+router.get("/api/workouts", function (req, res) {
+    db.Workout.find({})
+        .populate("exercises")
+        .then(dbWorkout => {
+            res.json(dbWorkout);
+        });
+});
+
+router.put("/api/workouts/:id", function (req, res) {
+    console.log(req.params)
+    const id = req.params.id;
+    if (id) {
+        db.Workout.findByIdAndUpdate(id, { $push: { exercises: req.body } })
+            .then(dbWorkout => {
+                res.json(dbWorkout)
+            })
+    };
+});
+
 router.post("/api/workouts", ({ body }, res) => {
     // console.log("testing...")
     // console.log(body)
@@ -18,23 +37,4 @@ router.post("/api/workouts", ({ body }, res) => {
     });
 });
 
-router.get("/api/workouts", function (req, res) {
-    db.Workout.find({})
-        .populate("workouts")
-        .then(dbWorkout => {
-            res.json(dbWorkout);
-        });
-});
-
-/*======NO LONGER USING EXERCISE MODEL*/
-// router.post("/api/exercise", ({ body }, res) => {
-//   db.Exercise.create(body)
-//     .then(dbExercise => {
-//       res.json(dbExercise);
-//     })
-//     .catch(err => {
-//       res.status(400).json(err);
-//     });
-// });
-  
-  module.exports = router;
+module.exports = router;

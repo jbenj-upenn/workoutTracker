@@ -1,9 +1,10 @@
 let mongoose = require("mongoose");
 let db = require("../models");
 
-mongoose.connect("mongodb://localhost/workoutdb", {
+mongoose.connect("mongodb://localhost/practiceDb", {
   useNewUrlParser: true,
-  useFindAndModify: false
+  useFindAndModify: false,
+  useUnifiedTopology: true
 });
 
 let workoutSeed = [
@@ -122,17 +123,17 @@ let workoutSeed = [
       }
     ]
   },
-  {
-    day: new Date().setDate(new Date().getDate()-1),
-    exercises: [
-      {
-        type: "resistance",
-        name: "Bench",
-        duration: 30,
-        distance: 2
-      }
-    ]
-  }
+//   {
+//     day: new Date().setDate(new Date().getDate()-1),
+//     exercises: [
+//       {
+//         type: "resistance",
+//         name: "Bench",
+//         duration: 30,
+//         distance: 2
+//       }
+//     ]
+//   }
 ];
 
 db.Workout.deleteMany({})
